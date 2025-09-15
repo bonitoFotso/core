@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import User, Technicien
+from .models import User
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
@@ -159,22 +159,3 @@ class UserSerializer(serializers.ModelSerializer):
             
         return user
 
-
-class TechnicienSerializer(serializers.ModelSerializer):
-    """Serializer for the Technicien model"""
-    user = UserSerializer(read_only=True)
-    email = serializers.EmailField(source='user.email', read_only=True)
-    username = serializers.CharField(source='user.username', read_only=True)
-    first_name = serializers.CharField(source='user.first_name', read_only=True)
-    last_name = serializers.CharField(source='user.last_name', read_only=True)
-    is_active = serializers.BooleanField(source='user.is_active', read_only=True)
-    date_joined = serializers.DateTimeField(source='user.date_joined', read_only=True)
-    full_name = serializers.CharField(source='user.full_name', read_only=True)
-    
-    class Meta:
-        model = Technicien
-        fields = ('id', 'user', 'email', 'username', 'first_name', 'last_name',
-                  'nom', 'prenom', 'telephone', 'adresse', 'experience', 
-                  'disponibilite', 'photo', 'is_active', 'date_joined', 
-                  'created_at', 'updated_at', 'full_name')
-        read_only_fields = ('created_at', 'updated_at')

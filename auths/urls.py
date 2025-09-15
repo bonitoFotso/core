@@ -1,10 +1,9 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import UserViewSet, TechnicienViewSet, CustomTokenObtainPairView
+from .views import UserViewSet, CustomTokenObtainPairView
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'techniciens', TechnicienViewSet)
 
 urlpatterns = [
     path('login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
