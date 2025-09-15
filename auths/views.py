@@ -1,7 +1,6 @@
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
-from .models import Technicien
 from .serializers import UserSerializer
 from rest_framework import status, permissions
 from rest_framework.decorators import action
