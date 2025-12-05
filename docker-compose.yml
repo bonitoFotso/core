@@ -16,7 +16,7 @@ services:
       retries: 3
     restart: unless-stopped
     networks:
-      - app-network
+      - core-network
 
   redis:
     image: redis:7-alpine
@@ -26,7 +26,7 @@ services:
       - redis_data:/data
     restart: unless-stopped
     networks:
-      - app-network
+      - core-network
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -42,7 +42,7 @@ services:
       - db
     restart: unless-stopped
     networks:
-      - app-network
+      - core-network
 
   web:
     build: .
@@ -71,7 +71,7 @@ services:
              python manage.py runserver 0.0.0.0:8000"
     restart: unless-stopped
     networks:
-      - app-network
+      - core-network
 
 volumes:
   postgres_data:
@@ -81,5 +81,5 @@ volumes:
   media_volume:
 
 networks:
-  app-network:
+  core-network:
     driver: bridge
